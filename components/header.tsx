@@ -50,34 +50,35 @@ const Header = () => {
 				{/* Navigation Links */}
 				<nav
 					className={`${
-						isMenuOpen ? "block" : "hidden"
-					} absolute top-full left-0 w-full bg-white shadow-md py-4 px-6 md:block md:static md:p-0 md:shadow-none`}
+						isMenuOpen ? "flex" : "hidden"
+					} absolute top-full left-0 right-0 bg-white shadow-md py-4 px-6 md:block md:static md:p-2 md:shadow-none md:relative `}
+					style={{ top: isMenuOpen ? "60px" : "0px", textAlign: "center" }} // Dynamic positioning based on header height
 				>
-					<ul className='flex flex-col md:flex-row md:items-center md:space-x-4'>
+					<ul className='flex flex-col md:flex-row items-center w-full md:space-x-2'>
 						<li>
 							<Link href='/features'>
-								<span className='block text-gray-400 hover:text-gray-600 py-2 md:py-0 cursor-pointer'>
+								<span className='block text-gray-400 hover:text-gray-600 p-2 md:py-0 cursor-pointer'>
 									Features
 								</span>
 							</Link>
 						</li>
 						<li>
 							<Link href='/pricing'>
-								<span className='block text-gray-400 hover:text-gray-600 py-2 md:py-0 cursor-pointer'>
+								<span className='block text-gray-400 hover:text-gray-600 p-2 md:py-0 cursor-pointer'>
 									Pricing
 								</span>
 							</Link>
 						</li>
 						<li>
 							<Link href='/about'>
-								<span className='block text-gray-400 hover:text-gray-600 py-2 md:py-0 cursor-pointer'>
+								<span className='block text-gray-400 hover:text-gray-600 p-2 md:py-0 cursor-pointer'>
 									About Us
 								</span>
 							</Link>
 						</li>
 						<li>
 							<Link href='/contact'>
-								<span className='block text-gray-400 hover:text-gray-600 py-2 md:py-0 cursor-pointer'>
+								<span className='block text-gray-400 hover:text-gray-600 p-2 md:py-0 cursor-pointer'>
 									Contact
 								</span>
 							</Link>
@@ -86,7 +87,7 @@ const Header = () => {
 				</nav>
 
 				{/* Call to Action Button - visible only on desktop */}
-				<div className='hidden md:block'>
+				<div className='hidden md:flex'>
 					<Link href='/signup'>
 						<span className='bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded cursor-pointer'>
 							Sign Up
