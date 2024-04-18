@@ -1,7 +1,7 @@
 "use client";
 // import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
@@ -22,6 +22,14 @@ export default function RootLayout({
 
 	const correctPassword = "Wakezeach2024!"; // This should be securely managed
 
+	// Check local storage to see if access has already been granted
+	useEffect(() => {
+		const access = localStorage.getItem("accessGranted");
+		if (access) {
+			setAccessGranted(true);
+		}
+	}, []);
+
 	const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setPassword(event.target.value);
 	};
@@ -29,10 +37,12 @@ export default function RootLayout({
 	const verifyPassword = () => {
 		if (password === correctPassword) {
 			setAccessGranted(true);
+			localStorage.setItem("accessGranted", "true"); // Store access in local storage
 		} else {
-			alert("Wrong password"); // You might want to handle this more gracefully
+			alert("Wrong password"); // Consider using a less intrusive method for user feedback
 		}
 	};
+
 	return (
 		<html lang='en'>
 			<body className={inter.className}>
