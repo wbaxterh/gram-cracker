@@ -24,13 +24,13 @@ export default function Home() {
 			</div>
 
 			{/* Features Section */}
-			<section className='w-full py-16 bg-gray-800 text-white mt-8'>
+			<section className='w-full pt-8 pb-16 bg-gray-800 text-white mt-8'>
 				<div className='max-w-6xl mx-auto px-6'>
 					<h2 className='text-3xl font-bold text-center'>Powerful Features</h2>
 					<div className='flex flex-wrap items-center justify-center gap-8 mt-8'>
 						<div className='w-full md:w-1/3 p-6 bg-gray-900 rounded-lg shadow'>
 							<h3 className='text-xl font-semibold'>
-								🔗 AI-Powered Automation
+								🦾 AI-Powered Automation
 							</h3>
 							<p className='mt-2'>
 								Train your own AI to analyze your camera roll, create and
@@ -39,7 +39,7 @@ export default function Home() {
 						</div>
 						<div className='w-full md:w-1/3 p-6 bg-gray-900 rounded-lg shadow'>
 							<h3 className='text-xl font-semibold'>
-								<span className='text-xxxl'>⚛</span> Computer Vision
+								<span className='text-xxxl'>🔍</span> Computer Vision
 							</h3>
 							<p className='mt-2'>
 								Take advantage of the built-in computer vision model that is
