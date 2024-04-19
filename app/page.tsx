@@ -13,7 +13,7 @@ export default function Home() {
 					className='mx-auto'
 				/>
 				<h1 className='mt-6 text-4xl font-bold text-white'>
-					Automate Your Instagram Posts
+					Automated Instagram Posts
 				</h1>
 				<p className='text-xl text-gray-200 mt-4'>
 					You bearly have to do anything
