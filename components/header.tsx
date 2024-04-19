@@ -1,14 +1,41 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import "../css/Header.module.css";
 
 const Header = () => {
 	// State to handle the menu toggle on mobile
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
+	const headerRef = useRef<HTMLHeadingElement>(null);
+
+	// Apply sticky positioning dynamically
+	useEffect(() => {
+		const handleScroll = () => {
+			console.log("hi from handle scroll ", window.scrollY);
+			const headerEl = headerRef.current;
+			if (headerEl) {
+				// Ensure headerEl is not null before accessing it
+				if (window.scrollY > 60) {
+					// Your header height
+					headerEl.classList.add("sticky");
+				} else {
+					headerEl.classList.remove("sticky");
+				}
+			}
+		};
+		window.addEventListener("scroll", handleScroll);
+
+		return () => {
+			window.removeEventListener("scroll", handleScroll);
+		};
+	}, []);
 
 	return (
-		<header className='w-full bg-white shadow-md py-4 px-6 md:px-10'>
+		<header
+			ref={headerRef}
+			className='w-full bg-white shadow-md py-4 px-6 md:px-10'
+		>
 			<div className='flex items-center justify-between max-w-6xl mx-auto'>
 				{/* Logo and home link */}
 				<Link href='/'>
