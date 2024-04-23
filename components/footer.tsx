@@ -21,7 +21,10 @@ const Footer = () => {
 							</a>
 						</li>
 						<li>
-							<a href='/terms' className='hover:text-gray-400 mb-2 md:mb-0'>
+							<a
+								href='/terms-conditions'
+								className='hover:text-gray-400 mb-2 md:mb-0'
+							>
 								Terms of Service
 							</a>
 						</li>
