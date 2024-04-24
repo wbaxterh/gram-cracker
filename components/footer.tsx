@@ -4,7 +4,7 @@ const Footer = () => {
 			<div className='max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center'>
 				{/* Left side: Logo and branding */}
 				<div className='flex items-center mb-4 md:mb-0'>
-					<span className='text-lg font-bold'>GramCracker.io</span>
+					<span className='text-lg font-bold'>gramcracker.io</span>
 				</div>
 
 				{/* Right side: Links and social media icons */}

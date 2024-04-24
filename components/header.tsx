@@ -47,7 +47,7 @@ const Header = () => {
 							height={50}
 						/>
 						<span className='font-bold text-xl ml-2 text-gray-600'>
-							GramCracker.io
+							gramcracker.io
 						</span>
 					</span>
 				</Link>
