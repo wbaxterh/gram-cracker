@@ -115,9 +115,14 @@ const Header = () => {
 
 				{/* Call to Action Button - visible only on desktop */}
 				<div className='hidden md:flex'>
-					<Link href='/signup'>
+					<Link href='/register'>
+						<span className='bg-gray-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded cursor-pointer'>
+							Register
+						</span>
+					</Link>
+					<Link href='/sign-in'>
 						<span className='bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded cursor-pointer'>
-							Sign Up
+							Sign In
 						</span>
 					</Link>
 				</div>
