@@ -4,7 +4,7 @@ import React from "react";
 import useRequireAuth from "../../hooks/useRequireAuth";
 import { useAuth } from "../../context/AuthContext";
 
-const profile: React.FC = () => {
+const Profile: React.FC = () => {
 	const token = useRequireAuth(); // This will redirect if no token
 	const { email, logout } = useAuth();
 
@@ -20,4 +20,4 @@ const profile: React.FC = () => {
 	);
 };
 
-export default profile;
+export default Profile;
