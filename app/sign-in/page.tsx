@@ -2,12 +2,14 @@
 import React, { useState } from "react";
 import { loginUser } from "../../utils/api";
 import { Credentials } from "../../types/auth";
+import { useAuth } from "../../context/AuthContext";
 
 const SignIn: React.FC = () => {
 	const [credentials, setCredentials] = useState<Credentials>({
 		email: "",
 		password: "",
 	});
+	const { login } = useAuth(); // Destructure login function from context
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = e.target;
@@ -20,6 +22,7 @@ const SignIn: React.FC = () => {
 		console.log("respose from login ", response);
 		if (response.token) {
 			console.log("Logged in successfully:", response.token);
+			login(response.token, credentials.email); // Use the login function from AuthContext
 			// Handle successful login, e.g., storing the token, redirecting the user
 		} else {
 			console.error("Failed to log in");
@@ -32,7 +35,9 @@ const SignIn: React.FC = () => {
 			className='flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-blue-500 to-indigo-500'
 		>
 			<div className='p-8 bg-white rounded-lg shadow-lg max-w-md w-full'>
-				<h2 className='text-2xl font-bold text-center mb-6'>Sign In</h2>
+				<h2 className='text-2xl text-gray-800 font-bold text-center mb-6'>
+					Sign In
+				</h2>
 				<div className='mb-4'>
 					<input
 						type='email'
@@ -40,7 +45,7 @@ const SignIn: React.FC = () => {
 						value={credentials.email}
 						onChange={handleChange}
 						placeholder='Email'
-						className='w-full p-2 border border-gray-300 text-black rounded focus:outline-none focus:border-indigo-500'
+						className='w-full p-2 border border-gray-300 text-gray-800 rounded focus:outline-none focus:border-indigo-500'
 					/>
 				</div>
 				<div className='mb-6'>
@@ -50,7 +55,7 @@ const SignIn: React.FC = () => {
 						value={credentials.password}
 						onChange={handleChange}
 						placeholder='Password'
-						className='w-full p-2 border border-gray-300 text-black rounded focus:outline-none focus:border-indigo-500'
+						className='w-full p-2 border border-gray-300 text-gray-800 rounded focus:outline-none focus:border-indigo-500'
 					/>
 				</div>
 				<button

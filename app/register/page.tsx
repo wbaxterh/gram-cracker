@@ -1,12 +1,15 @@
 "use client";
 import React, { useState } from "react";
 import { registerUser } from "../../utils/api";
-import { Credentials } from "../../types/auth";
+import { RegisterCreds } from "../../types/auth";
 
-const Register = () => {
-	const [details, setDetails] = useState<Credentials>({
+const Register: React.FC = () => {
+	const [error, setError] = useState("");
+
+	const [details, setDetails] = useState<RegisterCreds>({
 		email: "",
 		password: "",
+		confirmPassword: "",
 	});
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -16,32 +19,72 @@ const Register = () => {
 
 	const handleSubmit = async (event: React.FormEvent) => {
 		event.preventDefault();
+		if (details.password !== details.confirmPassword) {
+			setError("Passwords do not match.");
+			// Optionally set an error state here to show an error message
+			return;
+		}
 		const response = await registerUser(details);
 		if (response._id) {
 			console.log("Registered successfully:", response);
 			// Handle successful registration
 		} else {
-			console.error("Failed to register");
+			setError("Failed to register: " + response.msg);
+			console.error("Failed to register, ", response);
 		}
 	};
 
 	return (
-		<form onSubmit={handleSubmit} className='register-form'>
-			<input
-				type='email'
-				name='email'
-				value={details.email}
-				onChange={handleChange}
-				placeholder='Email'
-			/>
-			<input
-				type='password'
-				name='password'
-				value={details.password}
-				onChange={handleChange}
-				placeholder='Password'
-			/>
-			<button type='submit'>Register</button>
+		<form
+			onSubmit={handleSubmit}
+			className='flex flex-col items-center justify-center min-h-screen bg-gradient-to-r from-blue-500 to-indigo-500'
+		>
+			<div className='p-8 bg-white rounded-lg shadow-lg max-w-md w-full'>
+				<h2 className='text-2xl text-gray-800 font-bold text-center mb-6'>
+					Register
+				</h2>
+				{error && (
+					<p className='bg-red-500 text-s bold text-white px-2 py-1 rounded m-2'>
+						{error}
+					</p>
+				)}
+				<div className='mb-4'>
+					<input
+						type='email'
+						name='email'
+						value={details.email}
+						onChange={handleChange}
+						placeholder='Email'
+						className='w-full p-2 border border-gray-300 text-gray-800 rounded focus:outline-none focus:border-indigo-500'
+					/>
+				</div>
+				<div className='mb-4'>
+					<input
+						type='password'
+						name='password'
+						value={details.password}
+						onChange={handleChange}
+						placeholder='Password'
+						className='w-full p-2 border border-gray-300 text-gray-800 rounded focus:outline-none focus:border-indigo-500'
+					/>
+				</div>
+				<div className='mb-6'>
+					<input
+						type='password'
+						name='confirmPassword'
+						value={details.confirmPassword}
+						onChange={handleChange}
+						placeholder='Confirm Password'
+						className='w-full p-2 border border-gray-300 text-gray-800 rounded focus:outline-none focus:border-indigo-500'
+					/>
+				</div>
+				<button
+					type='submit'
+					className='w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+				>
+					Register
+				</button>
+			</div>
 		</form>
 	);
 };

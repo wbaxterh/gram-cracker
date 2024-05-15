@@ -12,7 +12,6 @@ const Header = () => {
 	// Apply sticky positioning dynamically
 	useEffect(() => {
 		const handleScroll = () => {
-			console.log("hi from handle scroll ", window.scrollY);
 			const headerEl = headerRef.current;
 			if (headerEl) {
 				// Ensure headerEl is not null before accessing it
@@ -116,7 +115,7 @@ const Header = () => {
 				{/* Call to Action Button - visible only on desktop */}
 				<div className='hidden md:flex'>
 					<Link href='/register'>
-						<span className='bg-gray-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded cursor-pointer'>
+						<span className='bg-gray-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded cursor-pointer mr-2'>
 							Register
 						</span>
 					</Link>
