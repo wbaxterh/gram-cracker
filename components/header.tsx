@@ -3,8 +3,10 @@ import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import "../css/Header.module.css";
+import { useAuth } from "../context/AuthContext"; // Adjust path as needed
 
 const Header = () => {
+	const { token } = useAuth(); // Destructure to get the token from AuthContext
 	// State to handle the menu toggle on mobile
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const headerRef = useRef<HTMLHeadingElement>(null);
@@ -114,16 +116,26 @@ const Header = () => {
 
 				{/* Call to Action Button - visible only on desktop */}
 				<div className='hidden md:flex'>
-					<Link href='/register'>
-						<span className='bg-gray-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded cursor-pointer mr-2'>
-							Register
-						</span>
-					</Link>
-					<Link href='/sign-in'>
-						<span className='bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded cursor-pointer'>
-							Sign In
-						</span>
-					</Link>
+					{token ? (
+						<Link href='/profile'>
+							<span className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer'>
+								My Account
+							</span>
+						</Link>
+					) : (
+						<>
+							<Link href='/register'>
+								<span className='bg-gray-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded cursor-pointer mr-2'>
+									Register
+								</span>
+							</Link>
+							<Link href='/sign-in'>
+								<span className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer'>
+									Sign In
+								</span>
+							</Link>
+						</>
+					)}
 				</div>
 			</div>
 		</header>

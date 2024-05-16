@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
 	return (
@@ -18,9 +19,11 @@ export default function Home() {
 				<p className='text-xl text-gray-200 mt-4'>
 					You bearly have to do anything
 				</p>
-				<button className='mt-8 px-6 py-3 bg-white text-indigo-500 font-bold rounded hover:bg-gray-100'>
-					Get Started For Free
-				</button>
+				<Link href='/register'>
+					<button className='mt-8 px-6 py-3 bg-white text-indigo-500 font-bold rounded hover:bg-gray-100'>
+						Get Started For Free
+					</button>
+				</Link>
 			</div>
 
 			{/* Features Section */}

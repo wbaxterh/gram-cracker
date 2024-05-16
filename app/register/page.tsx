@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { registerUser } from "../../utils/api";
 import { RegisterCreds } from "../../types/auth";
+import CloseIcon from "@mui/icons-material/Close";
 
 const Register: React.FC = () => {
 	const [error, setError] = useState("");
@@ -11,7 +12,7 @@ const Register: React.FC = () => {
 		password: "",
 		confirmPassword: "",
 	});
-
+	const handleClose = () => setError("");
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = e.target;
 		setDetails((prev) => ({ ...prev, [name]: value }));
@@ -44,8 +45,9 @@ const Register: React.FC = () => {
 					Register
 				</h2>
 				{error && (
-					<p className='bg-red-500 text-s bold text-white px-2 py-1 rounded m-2'>
+					<p className='bg-red-500 text-white bold px-2 py-1 rounded my-2 flex justify-between items-center'>
 						{error}
+						<CloseIcon onClick={handleClose} className='cursor-pointer' />
 					</p>
 				)}
 				<div className='mb-4'>

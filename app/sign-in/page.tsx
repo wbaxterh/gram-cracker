@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { loginUser } from "../../utils/api";
 import { Credentials } from "../../types/auth";
 import { useAuth } from "../../context/AuthContext";
+import CloseIcon from "@mui/icons-material/Close";
 
 const SignIn: React.FC = () => {
 	const [credentials, setCredentials] = useState<Credentials>({
@@ -10,12 +11,13 @@ const SignIn: React.FC = () => {
 		password: "",
 	});
 	const { login } = useAuth(); // Destructure login function from context
+	const [error, setError] = useState("");
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = e.target;
 		setCredentials((prev) => ({ ...prev, [name]: value }));
 	};
-
+	const handleClose = () => setError("");
 	const handleSubmit = async (event: React.FormEvent) => {
 		event.preventDefault();
 		const response = await loginUser(credentials);
@@ -25,6 +27,7 @@ const SignIn: React.FC = () => {
 			login(response.token, credentials.email); // Use the login function from AuthContext
 			// Handle successful login, e.g., storing the token, redirecting the user
 		} else {
+			setError("Failed to log in: " + response.msg);
 			console.error("Failed to log in");
 		}
 	};
@@ -38,6 +41,12 @@ const SignIn: React.FC = () => {
 				<h2 className='text-2xl text-gray-800 font-bold text-center mb-6'>
 					Sign In
 				</h2>
+				{error && (
+					<p className='bg-red-500 text-white bold px-2 py-1 rounded my-2 flex justify-between items-center'>
+						{error}
+						<CloseIcon onClick={handleClose} className='cursor-pointer' />
+					</p>
+				)}
 				<div className='mb-4'>
 					<input
 						type='email'

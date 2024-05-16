@@ -14,7 +14,12 @@ const Profile: React.FC = () => {
 		<div className='flex flex-col items-center justify-top p-4 min-h-screen bg-gradient-to-r from-blue-500 to-indigo-500'>
 			<div className='p-8 bg-white rounded-lg shadow-lg text-gray-800 w-full'>
 				<h1>Welcome, {email}</h1>
-				<button onClick={logout}>Logout</button>
+				<button
+					onClick={logout}
+					className='bg-gray-500 text-white bold px-2 py-1 rounded my-2 flex '
+				>
+					Logout
+				</button>
 			</div>
 		</div>
 	);
